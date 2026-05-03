@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" translate="no">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, 
+                viewport-fit=cover, interactive-widget=resizes-content"/>
+    <meta name="color-scheme" content="only light"/>
+    <meta name="theme-color" content="#f8f9fa"/>
+    <meta name="referrer" content="strict-origin-when-cross-origin"/>
+    <meta name="description" content="Sign in to your account."/>
+    <link rel="icon" type="image/png" href="/img/trademark.png"/>
+    <title>Contact Form</title>
+    <script type="module" src="/src/main.ts"></script>
+  </head>
+  <body>
+
+  <!--Main Section-->
+  <main>
+
+    <!--First Section-->
+    <section>
+      <div class="control">
+        <div class="container">
+          <div class="content">
+            <div class="wrap">
+              <form class="contact" autocomplete="on" aria-labelledby="contact-heading" aria-describedby="contact-description" novalidate>
+                <div class="info">
+                  <header>
+                    <h1 id="contact-heading">Got something in mind?</h1>
+                    <p id="contact-description">Drop us a message, we read every word and reply faster than you'd expect.</p>
+                  </header>
+
+                  <div class="click">
+                    <label for="full-name">Full Name <small class="vital" aria-hidden="true">*</small></label>
+                    <input type="text" pattern="[A-Za-zÀ-ÖØ-öø-ÿ\s\-']+" id="full-name" name="full-name" minlength="5" maxlength="100"
+                           placeholder=" " autocomplete="name" aria-describedby="name-hint name-error name-success" required>
+                    <small id="name-hint" class="clue">e.g. Juan dela Cruz</small>
+                    <small id="name-error" class="error" aria-live="polite">Letters, hyphens, or apostrophes only.</small>
+                    <small id="name-success" class="success" aria-live="polite">Full name confirmed.</small>
+                  </div>
+
+                  <div class="click">
+                    <label for="email">Email <small class="vital" aria-hidden="true">*</small></label>
+                    <input type="email" id="email" name="email" maxlength="100" placeholder=" " autocomplete="email"
+                          aria-describedby="email-error email-success" required>
+                    <small id="email-error" class="error" aria-live="polite">Invalid email address.</small>
+                    <small id="email-success" class="success" aria-live="polite">Inbox ready.</small>
+                  </div>
+
+                  <div class="click">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" maxlength="100" placeholder=" "
+                          autocomplete="off" aria-describedby="subject-hint">
+                    <small id="subject-hint" class="clue">(Optional)</small>
+                  </div>
+
+                  <div class="click">
+                    <label for="message">Message <small class="vital" aria-hidden="true">*</small></label>
+                    <textarea id="message" name="message" minlength="15" maxlength="2000" rows="6" placeholder=" "
+                              autocomplete="off" aria-describedby="message-hint message-error message-success" required></textarea>
+                    <small id="message-hint" class="clue">Tell us how we can help.</small>
+                    <small id="message-error" class="error" aria-live="polite">Too short.</small>
+                    <small id="message-success" class="success" aria-live="polite">Perfect, that's enough detail.</small>
+                  </div>
+
+                  <div class="click">
+                    <button type="submit">Send your thoughts</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <div class="wrap">
+              <div class="here">
+                <div class="slide"></div>
+                <div class="slide"></div>
+                <div class="slide"></div>
+                <div class="slide"></div>
+                <div class="slide"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+   
+  </body>
+</html>

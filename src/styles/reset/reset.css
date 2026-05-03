@@ -1,0 +1,19 @@
+@layer reset {
+
+  :where(*, *::before, *::after){
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  :where(img, svg, video, canvas, audio, iframe, embed, object){
+    display: block;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+
+    :where(html){ 
+      scroll-behavior: smooth; 
+    }
+  }
+}

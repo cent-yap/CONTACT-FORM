@@ -1,0 +1,12 @@
+/* (First is lowest priority, Last is highest) */
+@layer reset, theme, base, structure, typography, animations, performance, capsules;
+
+/* Import into those layers */
+@import "./styles/reset/reset.css" layer(reset);
+@import "./styles/theme/theme.css" layer(theme);
+@import "./styles/base/base.css" layer(base);
+@import "./styles/structure/structure.css" layer(structure);
+@import "./styles/typography/typography.css" layer(typography);
+@import "./styles/animations/animations.css" layer(animations);
+@import "./styles/performance/performance.css" layer(performance);
+@import "./styles/capsules/capsules.css" layer(capsules);

@@ -1,0 +1,133 @@
+@layer typography{
+
+  @scope (:where(html, body)) {
+
+    /* Typography & letter spacing */
+    :is(h1, h2, h3, h4, legend, summary, figcaption, small, p, li){
+      text-wrap: pretty;
+      overflow-wrap: break-word;
+      word-break: normal;
+
+      @supports (text-box-trim: both) {
+        text-box-trim: both;
+        text-box-edge: cap alphabetic;
+      }
+    }
+
+    :is(h1, h2, h3, h4, legend, summary){
+      font-family: "Gambarino", system-ui, sans-serif;
+      font-weight: 500;
+      hyphens: none;
+      letter-spacing: 0.01em;
+      word-spacing: -0.02em;
+      line-height: var(--lh-dense);
+      text-rendering: optimizeLegibility;
+      text-wrap-style: balance;
+
+      & :is(b, em, span, strong){
+        font-weight: inherit;
+        letter-spacing: inherit;
+        word-spacing: inherit;
+      }
+    }
+
+    :is(a, abbr, u, ins, s, del, button, figcaption, small, p, li, label, input, select, textarea){
+      font-family: "Cabinet Grotesk", system-ui, sans-serif;
+      line-height: var(--lh-regular);
+    }
+
+    :is(a, abbr, u, ins, s, del){
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    :is(a, b, abbr, button, em, span, strong){
+      color: inherit;
+      letter-spacing: 0.005em;
+      word-spacing: 0.01em;
+    }
+
+    :is(a, abbr, button, span){
+      font-weight: 400;
+    }
+
+    :is(b, em, span, strong){
+      font-family: inherit;
+    }
+
+    :is(figcaption, small, p, li, label){
+      font-weight: 300;
+      hyphens: auto;
+      letter-spacing: 0.005em;
+      word-spacing: 0.02em;
+      max-inline-size: clamp(45ch, 50svi, 60ch);
+    }
+
+    :is(ol, ul){
+      margin: 0;
+      padding: 0;
+    }
+
+    li{
+      list-style: none;
+    }
+
+    /* Vertical rhythm */
+    p + p{
+      margin-block-start: var(--rh-regular);
+    }
+
+    li + li{
+      margin-block-start: var(--rh-dense);
+    }
+
+    * + :is(h1, h2, h3, h4){
+      margin-block-start: var(--rh-relaxed);
+    }
+
+    :is(h1, h2, h3, h4) + *{
+      margin-block-start: var(--rh-dense);
+    }
+
+    figure > figcaption{
+      margin-block-start: var(--rh-dense);
+    }
+
+    /* Reset & box-sizing for form elements */
+    :is(fieldset, select, textarea, input:not([type="checkbox"], [type="radio"])){
+      all: unset;
+      box-sizing: border-box;
+      display: block;
+      min-inline-size: 0;
+    }
+
+    :is(select, textarea, input:not([type="checkbox"], [type="radio"])){
+      position: relative;
+      appearance: none;
+      color: inherit;
+      font: inherit;
+      accent-color: var(--accent);
+      caret-color: currentColor;
+      inline-size: 100%;
+
+      @supports (field-sizing: content) {
+        field-sizing: content;
+      }
+    }
+
+    :is(textarea, input:not([type="checkbox"], [type="radio"])){
+      cursor: text;
+    }
+
+    :is(input[type="checkbox"], input[type="radio"]){
+      box-sizing: border-box;
+      accent-color: var(--accent);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    select{
+      cursor: pointer;
+    }
+  }
+}

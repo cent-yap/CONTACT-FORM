@@ -1,0 +1,362 @@
+@layer main {
+
+  /* Main Section */
+  main{
+
+    /* First Section */
+    section:first-of-type{
+      background: var(--surface);
+      min-block-size: 100dvb;
+
+      .control{
+
+        .container{
+         
+          .content{
+            display: flex;
+            place-content: center;
+            flex-flow: row wrap-reverse;
+            gap: calc(2 * var(--md-space));
+            inline-size: 100%;
+
+            &:has(:is(input, textarea):invalid){
+
+              .wrap:last-of-type{
+
+                .here{
+
+                  &::after{
+                    mix-blend-mode: soft-light;
+                  }
+
+                  .slide{
+                    animation: crossfade calc(5 * var(--dur-7)) var(--curve-long) calc(var(--i) * var(--dur-7)) infinite both;
+                    animation-composition: add;
+                  }
+                }
+              }
+            }
+
+            .wrap{
+              display: grid;
+              position: relative;
+              place-items: center;
+              min-inline-size: var(--stretch);
+
+              &:first-of-type{
+                flex: 1.2;
+                block-size: max-content;
+
+                form{
+                  display: grid;
+                  position: relative;
+                  place-items: center;
+                  block-size: fit-content;
+                  inline-size: 100%;
+
+                  &:has(:is(input, textarea):invalid){
+
+                    .info{
+
+                      .click:last-of-type{
+
+                        button[type="submit"]{
+                          cursor: not-allowed;
+                          pointer-events: none;
+                        }
+                      }
+                    }
+                  }
+
+                  .info{
+                    display: grid;
+                    position: relative;
+                    place-items: center;
+                    gap: var(--md);
+                    min-block-size: 100%;
+                    inline-size: 100%;
+
+                    header{
+                      display: grid;
+                      position: relative;
+                      place-items: start;
+                      gap: var(--sm);
+                      margin-block-end: var(--md-space);
+                      inline-size: 100%;
+
+                      h1{
+                        color: var(--secondary);
+                        font-size: var(--fs-h2);
+                      }
+
+                      p{
+                        color: var(--secondary-o);
+                        font-size: var(--fs-body);
+                      }
+                    }
+
+                    .click{
+                      display: grid;
+                      position: relative;
+                      gap: var(--sm);
+                      block-size: 100%;
+                      inline-size: 100%;
+
+                      &:not(:has(button[type="submit"])){
+                        place-items: center start;
+                      }
+
+                      small:is(.error, .success){
+                        display: none;
+                        position: absolute;
+                        place-self: start end;
+                        font-size: calc(var(--fs-small) - var(--sm-border));
+                        opacity: 0;
+                        transition: display var(--fx-short),
+                                    opacity var(--fx-short);
+                        transition-behavior: allow-discrete;
+                        translate: 0 calc(-1 * var(--sm));
+                        inline-size: fit-content;
+                      }
+
+                      label{
+                        display: inline-flex;
+                        position: absolute;
+                        color: var(--secondary-o);
+                        font-size: calc(var(--fs-body) - var(--sm-border));
+                        gap: var(--three);
+                        pointer-events: none;
+                        user-select: none;
+                        transition: background var(--fx-short),
+                                    color var(--fx-short),
+                                    padding-inline var(--fx-short),
+                                    translate var(--fx-short);
+
+                        &:is([for="full-name"], [for="subject"]){
+                          transform: translateY(calc(-1 * (var(--sm) + (2 * var(--two)))));
+                        }
+
+                        small.vital{
+                          display: none;
+                          color: var(--invalid);
+                          font-size: inherit;
+                        }
+                      }
+
+                      &:has(:is(input, textarea):where(:focus-visible, :not(:placeholder-shown))){
+                        
+                        label{
+                          color: var(--secondary);
+                          background: var(--surface);
+                          translate: 0 calc(-1 * (var(--md-space) + var(--xs)));
+                          z-index: 3;
+
+                          small.vital{
+                            display: inline-grid;
+                            transition: display var(--dur-1), 
+                                        opacity var(--fx-fast);
+                            transition-behavior: allow-discrete;
+
+                            @starting-style { 
+                              opacity: 0; 
+                            }
+                          }
+                        }
+
+                        small.clue{ 
+                          color: var(--secondary); 
+                        }
+                      }
+
+                      small.clue{
+                        color: var(--secondary-o);
+                        font-size: calc(var(--fs-small) - var(--sm-border));
+                      }
+
+                      :is(input, textarea){
+                        color: var(--secondary);
+                        font-size: var(--fs-small);
+                        --showy: var(--secondary-l);
+                        --weight: var(--one);
+                        box-shadow: inset 0 calc(-1 * var(--weight)) 0 0 var(--showy);
+                        padding: calc(var(--sm) + var(--three)) 0;
+                        transition: box-shadow var(--fx-short),
+                                    color var(--fx-short);
+
+                        &:focus-visible{
+                          --showy: var(--secondary-o);
+                          --weight: calc((var(--one) / 2) + var(--one));
+                        }
+
+                        &[name="full-name"]{
+                          text-transform: capitalize;
+                        }
+                      
+                        &:where(:not(:placeholder-shown)){
+                          --shadow: inset 0 calc((var(--one) / 2) + (-1 * var(--two))) 0 0;
+
+                          &:user-valid{
+                            box-shadow: var(--shadow) var(--valid);
+
+                            ~ small.clue{ 
+                              color: var(--valid); 
+                            }
+
+                            ~ small.success{
+                              display: grid;
+                              color: var(--valid); 
+                              opacity: 1;
+
+                              @starting-style { 
+                                opacity: 0; 
+                              }
+                            }
+                          }
+
+                          &:user-invalid:not(:focus-visible){
+                            box-shadow: var(--shadow) var(--invalid);
+                            animation: incorrect var(--fx-fast) calc(2 * var(--dur-3)) 3;
+
+                            ~ small.clue{ 
+                              color: var(--invalid); 
+                            }
+
+                            ~ small.error{
+                              display: grid;
+                              color: var(--invalid); 
+                              opacity: 1;
+
+                              @starting-style { 
+                                opacity: 0; 
+                              }
+                            }
+                          }
+                        }
+                      }
+
+                      textarea{
+                        resize: none;
+                        block-size: calc(10 * var(--md)); 
+                      }
+
+                      &:has(textarea) label{
+                        inset-block-start: calc(var(--sm) + var(--three));
+                        inset-inline-start: 0;
+                      }
+
+                      &:has(button[type="submit"]){
+                        place-items: end start;
+                        margin-block-start: var(--sm);
+
+                        button[type="submit"]{
+                          background: var(--secondary);
+                          border-radius: calc(2 * var(--md));
+                          box-shadow: var(--primary-l) 0 var(--one) var(--two) 0, var(--primary-l) 0 var(--one) var(--three) var(--one);
+                          color: var(--primary);
+                          font-size: calc(var(--fs-body) - var(--sm-border));
+                          white-space: nowrap;
+                          padding: calc(var(--sm) + var(--three)) var(--sm-space);
+                          pointer-events: auto;
+                          will-change: scale;
+                          inline-size: 100%;
+
+                          &:hover{
+                            color: var(--secondary);
+                          }
+
+                          &::before{
+                            content: " ";
+                            position: absolute;
+                            inset: 0;
+                            background: var(--accent);
+                            transition: scale var(--fx-short);
+                            scale: 0 1 0;
+                            transform-origin: left;
+                            z-index: -1;
+                          }
+
+                          &:hover::before{
+                            scale: 1 1 1;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+
+              &:last-of-type{
+                flex: 2;
+                clip-path: var(--shape);
+                overflow: clip;
+                overflow-clip-margin: content-box;
+                min-block-size: var(--x-stretch);
+
+                .here{
+                  position: relative;
+                  background: var(--secondary);
+                  mask: linear-gradient(to bottom in oklch, var(--secondary) 0% 85%, transparent 100%) no-repeat 100% 100%;
+                  isolation: isolate;
+                  block-size: 100%;
+                  inline-size: 100%;
+
+                  &::before, &::after{
+                    content: " ";
+                    position: absolute;
+                    inset: 0;
+                  }
+
+                  &::before{
+                    background: linear-gradient(to bottom in oklch, var(--primary-l), var(--primary-o));
+                    mix-blend-mode: overlay;
+                    z-index: 2;
+                  }
+
+                  &::after{
+                    background: url("https://cdn.prod.website-files.com/5e88da4bcce5fb5debaab0e6/6007f4dbdc71065158e80081_A_Frame_1_Loop.gif") center / cover no-repeat;
+                    filter: contrast(1.1) saturate(1.1);
+                    z-index: 0;
+                  }
+
+                  .slide{
+                    position: absolute;
+                    inset: 0;
+                    background: center / cover no-repeat;
+                    filter: contrast(1.1) saturate(1.1);
+                    opacity: 0;
+                    z-index: 1;
+
+                    &:nth-child(1 of &){ 
+                      --i: 0;
+                      background-image: url("https://4kwallpapers.com/images/walls/thumbs_3t/4463.jpg"); 
+                    }
+
+                    &:nth-child(2 of &){ 
+                      --i: 1;
+                      background-image: url("https://4kwallpapers.com/images/walls/thumbs_3t/5822.jpg"); 
+                    }
+
+                    &:nth-child(3 of &){ 
+                      --i: 2;
+                      background-image: url("https://4kwallpapers.com/images/walls/thumbs_3t/8138.jpg");
+                    }
+
+                    &:nth-child(4 of &){ 
+                      --i: 3;
+                      background-image: url("https://4kwallpapers.com/images/walls/thumbs_3t/1098.jpg"); 
+                    }
+
+                    &:nth-child(5 of &){ 
+                      --i: 4;
+                      background-image: url("https://4kwallpapers.com/images/walls/thumbs_3t/4058.jpg"); 
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

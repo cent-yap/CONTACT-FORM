@@ -1,0 +1,194 @@
+@layer theme {
+  
+  /* Color properties */
+  @property --primary-base {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #0b090a;
+  }
+
+  @property --secondary-base {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #f8f9fa;
+  }
+
+  @property --accent-base {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #99582a;
+  }
+
+   @property --surface-base {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #051923;
+  }
+
+  @property --valid-base {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #2bc016;
+  }
+
+  @property --invalid-base {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #ff0000;
+  }
+
+  :root{
+    
+    /* 100% Alpha OKLCH Color Palettes */
+    --primary: oklch(from var(--primary-base) calc(l - 30) calc(c * 10) calc(h * 10));
+    --secondary: oklch(from var(--secondary-base) calc(l * 15) calc(c * 5) calc(h + 20));
+    --accent: oklch(from var(--accent-base) l calc(c * 1.5) calc(h - 3));
+    --surface: oklch(from var(--surface-base) l calc(c * 1.5) calc(h - 3));
+    --valid: oklch(from var(--valid-base) l calc(c * 1.5) calc(h - 3));
+    --invalid: oklch(from var(--invalid-base) l calc(c * 1.5) calc(h - 3));
+
+    /* 75% Alpha */
+    --primary-o: oklch(from var(--primary) l c h / 0.75);
+    --secondary-o: oklch(from var(--secondary) l c h / 0.75);
+    --accent-o: oklch(from var(--accent) l c h / 0.75);
+    --surface-o: oklch(from var(--surface) l c h / 0.75);
+
+    /* 15% Alpha */
+    --primary-l: oklch(from var(--primary) l c h / 0.15);
+    --secondary-l: oklch(from var(--secondary) l c h / 0.15);
+    --accent-l: oklch(from var(--accent) l c h / 0.15);
+    --surface-l: oklch(from var(--surface) l c h / 0.15);
+
+    /* Fluid sizes variables */
+    /* ------------------------------------------------------------
+    --x-stretch                                      ~350px – 500px
+    --stretch                                        ~300px – 450px
+
+    --ultra                                          ~40px – 65px
+    --jumbo                                          ~30px – 55px
+    --xx-large                                       ~25px – 45px
+    --x-large                                        ~20px – 35px
+    --large                                          ~17px – 30px
+
+    --body                                           ~15px – 20px
+    --small                                          ~13px – 17px
+
+    --md-space                                       ~15px – 20px
+    --sm-space                                       ~7px – 10px
+    --md-border                                      ~2px – 3px
+    --sm-border                                      ~1px – 2px
+    ------------------------------------------------------------ */
+
+    --x-stretch: clamp(21.875rem, calc(18.125rem + 15svi), 31.25rem);
+    --stretch: clamp(18.75rem, calc(15rem + 15svi), 28.125rem);
+
+    --ultra: clamp(2.5rem, calc(1.875rem + 2.5svi), 4.0625rem);
+    --jumbo: clamp(1.875rem, calc(1.25rem + 2.5svi), 3.4375rem);
+    --xx-large: clamp(1.5625rem, calc(1.0625rem + 2svi), 2.8125rem);
+    --x-large: clamp(1.25rem, calc(0.875rem + 1.5svi), 2.1875rem);
+    --large: clamp(1.0625rem, calc(0.7375rem + 1.3svi), 1.875rem);
+
+    --body: clamp(0.9375rem, calc(0.8125rem + 0.5svi), 1.25rem);
+    --small: clamp(0.8125rem, calc(0.7125rem + 0.4svi), 1.0625rem);
+
+    --md-space: clamp(0.9375rem, calc(0.8125rem + 0.5svi), 1.25rem);
+    --sm-space: clamp(0.4375rem, calc(0.3625rem + 0.3svi), 0.625rem);
+    --md-border: clamp(0.125rem, calc(0.0998rem + 0.1008svi), 0.188rem);
+    --sm-border: clamp(0.063rem, calc(0.0382rem + 0.0992svi), 0.125rem);
+ 
+    /* Fixed sizes variables */
+    /* ------------------------------------------------------------
+    --one                                            ~1px
+    --two                                            ~2px
+    --three                                          ~3px
+    --xs                                             ~5px
+    --sm                                             ~10px
+    --sp                                             ~15px
+    --md                                             ~20px
+    --limit                                          ~1450px
+    ------------------------------------------------------------ */
+
+    --one: 0.063rem;
+    --two: 0.125rem;
+    --three: 0.188rem;
+    --xs: 0.313rem;
+    --sm: 0.625rem;
+    --sp: 0.938rem;
+    --md: 1.25rem;
+    --limit: 90.625rem;
+
+    /* Typography scale */
+    --fs-h1: var(--jumbo);
+    --fs-h2: var(--xx-large);
+    --fs-h3: var(--x-large);
+    --fs-h4: var(--large);
+    --fs-body: var(--body);
+    --fs-small: var(--small);
+
+    /* Line-height ratios */
+    --lh-dense: clamp(1.1, calc(1 + 0.2svi), 1.3);
+    --lh-regular: clamp(1.4, calc(1.3 + 0.2svi), 1.55);
+    --lh-relaxed: clamp(1.5, calc(1.4 + 0.3svi), 1.8);
+
+    /* Line-height–based rhythm */
+    --rh-dense: calc(1lh * var(--lh-dense));
+    --rh-regular: calc(1lh * var(--lh-regular));
+    --rh-relaxed: calc(1lh * var(--lh-relaxed));
+
+    @supports (line-height: 1lh) {
+
+      --rh-dense: calc(1lh * var(--lh-dense));
+      --rh-regular: calc(1lh * var(--lh-regular));
+      --rh-relaxed: calc(1lh * var(--lh-relaxed));
+    }
+
+    /* Inverted Shapes */
+    --shape: shape(from 0 100%,vline to 1.5625rem,curve to 1.24% 0.9688rem with 0.83% 0.9375rem,curve to 2.07% 0.5625rem with 1.65% 1rem,curve to 2.89% 1.25rem with 2.48% 0.125rem,curve to 3.72% 2.75rem with 3.31% 2.375rem,curve to 4.55% 1.7188rem with 4.13% 3.125rem,curve to 5.37% 1.2812rem with 4.96% 0.3125rem,curve to 6.2% 1.4688rem with 5.79% 2.25rem,curve to 7.02% 0.6562rem with 6.61% 0.6875rem,curve to 7.85% 0.3438rem with 7.44% 0.625rem,curve to 8.68% 0.5938rem with 8.26% 0.0625rem,curve to 9.5% 0.7188rem with 9.09% 1.125rem,curve to 10.33% 1.25rem with 9.92% 0.3125rem,curve to 11.16% 1.4375rem with 10.74% 2.1875rem,curve to 11.98% 1.75rem with 11.57% 0.6875rem,curve to 12.81% 1.5312rem with 12.4% 2.8125rem,curve to 13.64% 1.5938rem with 13.22% 0.25rem,curve to 14.46% 2.7812rem with 14.05% 2.9375rem,curve to 15.29% 1.9375rem with 14.88% 2.625rem,curve to 16.12% 1.6562rem with 15.7% 1.25rem,curve to 16.94% 1.4688rem with 16.53% 2.0625rem,curve to 17.77% 0.8438rem with 17.36% 0.875rem,curve to 18.6% 1.6562rem with 18.18% 0.8125rem,curve to 19.42% 2.5625rem with 19.01% 2.5rem,curve to 20.25% 1.7812rem with 19.83% 2.625rem,curve to 21.07% 0.4688rem with 20.66% 0.9375rem,curve to 21.9% 0.7812rem with 21.49% 0rem,curve to 22.73% 1.7188rem with 22.31% 1.5625rem,curve to 23.55% 1.75rem with 23.14% 1.875rem,curve to 24.38% 1.6875rem with 23.97% 1.625rem,curve to 25.21% 2.125rem with 24.79% 1.75rem,curve to 26.03% 1.75rem with 25.62% 2.5rem,curve to 26.86% 1.9375rem with 26.45% 1rem,curve to 27.69% 2.3125rem with 27.27% 2.875rem,curve to 28.51% 1.4688rem with 28.1% 1.75rem,curve to 29.34% 0.75rem with 28.93% 1.1875rem,curve to 30.17% 0.6875rem with 29.75% 0.3125rem,curve to 30.99% 1.4062rem with 30.58% 1.0625rem,curve to 31.82% 1.8438rem with 31.4% 1.75rem,curve to 32.64% 1.4688rem with 32.23% 1.9375rem,curve to 33.47% 2rem with 33.06% 1rem,curve to 34.3% 1.875rem with 33.88% 3rem,curve to 35.12% 1.6875rem with 34.71% 0.75rem,curve to 35.95% 2.5625rem with 35.54% 2.625rem,curve to 36.78% 2.0625rem with 36.36% 2.5rem,curve to 37.6% 1.5rem with 37.19% 1.625rem,curve to 38.43% 1.8125rem with 38.02% 1.375rem,curve to 39.26% 2.125rem with 38.84% 2.25rem,curve to 40.08% 1.7812rem with 39.67% 2rem,curve to 40.91% 1.5625rem with 40.5% 1.5625rem,curve to 41.74% 1.1875rem with 41.32% 1.5625rem,curve to 42.56% 0.9062rem with 42.15% 0.8125rem,curve to 43.39% 0.8125rem with 42.98% 1rem,curve to 44.21% 1rem with 43.8% 0.625rem,curve to 45.04% 1.1562rem with 44.63% 1.375rem,curve to 45.87% 0.5312rem with 45.45% 0.9375rem,curve to 46.69% 1.5rem with 46.28% 0.125rem,curve to 47.52% 2.5rem with 47.11% 2.875rem,curve to 48.35% 2.2812rem with 47.93% 2.125rem,curve to 49.17% 1.2188rem with 48.76% 2.4375rem,curve to 50% 0.6875rem with 49.59% 0rem,curve to 50.83% 1.25rem with 50.41% 1.375rem,curve to 51.65% 1.5rem with 51.24% 1.125rem,curve to 52.48% 1.7812rem with 52.07% 1.875rem,curve to 53.31% 1.4375rem with 52.89% 1.6875rem,curve to 54.13% 1.6875rem with 53.72% 1.1875rem,curve to 54.96% 2.25rem with 54.55% 2.1875rem,curve to 55.79% 2.1875rem with 55.37% 2.3125rem,curve to 56.61% 1.5rem with 56.2% 2.0625rem,curve to 57.44% 1.4062rem with 57.02% 0.9375rem,curve to 58.26% 1.3438rem with 57.85% 1.875rem,curve to 59.09% 1.5625rem with 58.68% 0.8125rem,curve to 59.92% 1.75rem with 59.5% 2.3125rem,curve to 60.74% 1.4688rem with 60.33% 1.1875rem,curve to 61.57% 1rem with 61.16% 1.75rem,curve to 62.4% 1.0625rem with 61.98% 0.25rem,curve to 63.22% 2.375rem with 62.81% 1.875rem,curve to 64.05% 1.5625rem with 63.64% 2.875rem,curve to 64.88% 0.2812rem with 64.46% 0.25rem,curve to 65.7% 0.1875rem with 65.29% 0.3125rem,curve to 66.53% 1.5312rem with 66.12% 0.0625rem,curve to 67.36% 2.7188rem with 66.94% 3rem,curve to 68.18% 1.7812rem with 67.77% 2.4375rem,curve to 69.01% 1.5312rem with 68.6% 1.125rem,curve to 69.83% 2.3125rem with 69.42% 1.9375rem,curve to 70.66% 2.5625rem with 70.25% 2.6875rem,curve to 71.49% 1.875rem with 71.07% 2.4375rem,curve to 72.31% 1.0625rem with 71.9% 1.3125rem,curve to 73.14% 0.9062rem with 72.73% 0.8125rem,curve to 73.97% 1.8438rem with 73.55% 1rem,curve to 74.79% 2.5938rem with 74.38% 2.6875rem,curve to 75.62% 1.6875rem with 75.21% 2.5rem,curve to 76.45% 0.6562rem with 76.03% 0.875rem,curve to 77.27% 1.3125rem with 76.86% 0.4375rem,curve to 78.1% 1.1562rem with 77.69% 2.1875rem,curve to 78.93% 0.75rem with 78.51% 0.125rem,curve to 79.75% 1.5312rem with 79.34% 1.375rem,curve to 80.58% 1.2188rem with 80.17% 1.6875rem,curve to 81.4% 0.7188rem with 80.99% 0.75rem,curve to 82.23% 1.4375rem with 81.82% 0.6875rem,curve to 83.06% 2.4375rem with 82.64% 2.1875rem,curve to 83.88% 2.5625rem with 83.47% 2.6875rem,curve to 84.71% 1.5rem with 84.3% 2.4375rem,curve to 85.54% 0.875rem with 85.12% 0.5625rem,curve to 86.36% 1.7812rem with 85.95% 1.1875rem,curve to 87.19% 2.5312rem with 86.78% 2.375rem,curve to 88.02% 2.3438rem with 87.6% 2.6875rem,curve to 88.84% 1.9375rem with 88.43% 2rem,curve to 89.67% 1.3125rem with 89.26% 1.875rem,curve to 90.5% 0.5rem with 90.08% 0.75rem,curve to 91.32% 1.25rem with 90.91% 0.25rem,curve to 92.15% 2.6562rem with 91.74% 2.25rem,curve to 92.98% 1.9688rem with 92.56% 3.0625rem,curve to 93.8% 1.1562rem with 93.39% 0.875rem,curve to 94.63% 0.9062rem with 94.21% 1.4375rem,curve to 95.45% 1.4688rem with 95.04% 0.375rem,curve to 96.28% 1.5625rem with 95.87% 2.5625rem,curve to 97.11% 0.5625rem with 96.69% 0.5625rem,curve to 97.93% 1.4688rem with 97.52% 0.5625rem,curve to 98.76% 1.875rem with 98.35% 2.375rem,curve to 100% 1.5625rem with 99.17% 1.375rem,vline to 100%, hline to 0);
+
+    /* Duration scale (short → long) */
+    --dur-1: 250ms;
+    --dur-2: 350ms;
+    --dur-3: 500ms;
+    --dur-4: 800ms;
+    --dur-5: 1200ms;
+    --dur-6: 2000ms;
+    --dur-7: 4000ms;
+
+    @media (prefers-reduced-motion: reduce) {
+      
+      :root{
+        --dur-1: 0ms;
+        --dur-2: 0ms;
+        --dur-3: 0ms;
+        --dur-4: 0ms;
+        --dur-5: 0ms;
+        --dur-6: 0ms;
+        --dur-7: 0ms;
+      }
+    }
+
+    /* Easing curves */
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-in: cubic-bezier(0.32, 0, 0.67, 0);
+    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-linear: linear(0, 1);
+
+    /* Premium motion curves */
+    --curve-fast: cubic-bezier(0.32, 0.72, 0, 1);
+    --curve-short: cubic-bezier(0.34, 0.69, 0.1, 1);
+    --curve-long: cubic-bezier(0.22, 0.61, 0.08, 1);
+
+    /* Combined motion tokens */
+    --fx-fast: var(--dur-1) var(--ease-out);
+    --fx-short: var(--dur-2) var(--ease-out);
+    --fx-smooth: var(--dur-3) var(--ease-in-out);
+    --fx-long: var(--dur-4) var(--ease-in-out);
+    --fx-extra: var(--dur-5) var(--ease-in-out);
+    --fx-due: var(--dur-7) var(--ease-linear);
+
+    /* Advanced curves */
+    --fx-cv-fast: var(--dur-5) var(--curve-fast);
+    --fx-cv-short: var(--dur-6) var(--curve-short);
+    --fx-cv-long: var(--dur-7) var(--curve-long);
+  }
+}

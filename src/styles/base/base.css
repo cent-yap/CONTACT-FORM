@@ -1,0 +1,99 @@
+@layer base {
+
+  :focus-visible{
+    outline: var(--one) solid var(--accent);
+    outline-offset: var(--three);
+  }
+
+  :focus:not(:focus-visible){
+    outline: none;
+  }
+
+  ::selection{
+    background: var(--surface);
+    color: var(--secondary);
+    text-shadow: none;
+  }
+
+  :is(img, svg){
+    user-select: none;
+    -webkit-user-drag: none;
+    -webkit-touch-callout: none;
+    forced-color-adjust: auto;
+    print-color-adjust: exact;
+    object-fit: contain;
+    object-position: center;
+    block-size: auto;
+    max-inline-size: 100%;
+  }
+
+  :is(a img, button img, [role="button"] img){
+    cursor: pointer;
+  }
+
+  img{
+    image-orientation: from-image;
+
+    &[loading="lazy"]{
+      content-visibility: auto;
+      contain-intrinsic-size: auto calc(3 * var(--ultra));
+    }
+  }
+
+  svg{
+    fill: none;
+    overflow: visible;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    shape-rendering: geometricPrecision;
+    text-rendering: geometricPrecision;
+    transform-box: fill-box;
+    transform-origin: center;
+    vector-effect: non-scaling-stroke;
+  }
+
+  html{
+    font-family: "Cabinet Grotesk", system-ui, sans-serif;
+    font-synthesis: none;
+    font-variant: common-ligatures contextual;
+    font-optical-sizing: auto;
+    font-kerning: normal;
+    -webkit-font-smoothing: antialiased;
+
+    interpolate-size: allow-keywords;
+    hanging-punctuation: first last;
+    text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    text-underline-offset: 0.2em;
+    text-decoration-thickness: from-font;
+    hyphenate-limit-chars: 6 3 3;
+
+    overflow: clip auto;
+    scroll-padding-block-start: var(--sm-space);
+    scrollbar-color: var(--accent) transparent;
+    scrollbar-width: thin;
+
+    accent-color: var(--accent);
+    caret-color: var(--accent);
+    color-scheme: only light;
+
+    min-block-size: 100dvb;
+    max-inline-size: 100%;
+
+    @supports (text-spacing-trim: trim-start) {
+      
+      text-spacing-trim: trim-start;
+    }
+  }
+
+  body{
+    background: var(--secondary);
+    color: var(--primary);
+    overflow-wrap: anywhere;
+    overscroll-behavior: none;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    inline-size: 100%;
+  }
+}

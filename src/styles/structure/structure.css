@@ -1,0 +1,39 @@
+@layer structure {
+
+  /* Shared grid base */
+  :is(header, main, footer, section, .control, .container){
+    display: grid;
+    position: relative;
+    place-items: center;
+  }
+
+  :is(header, main, footer, section, .control){
+    inline-size: 100%;
+  }
+
+  /* Main */
+  @scope (main) to (.container) {
+
+    section{
+      padding-block: var(--jumbo); 
+
+      .control{ 
+        max-inline-size: var(--limit); 
+      }
+    }
+  }
+
+  /* Footer */
+  @scope (footer) to (.container) {
+
+    .control{
+      max-inline-size: var(--limit);
+    }
+  }
+
+  /* Container global rules */
+  .container{
+    gap: calc(2 * var(--md-space));
+    inline-size: calc(100% - var(--ultra));
+  }
+}

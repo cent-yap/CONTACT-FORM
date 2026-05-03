@@ -1,0 +1,53 @@
+@layer capsules {
+
+  @scope (:is(button, [class="btn"], [type="submit"]):not([data-raw])) {
+
+    :scope{
+      /* Reset & box-sizing */
+      all: unset;
+      box-sizing: border-box;
+      appearance: none;
+      color: inherit;
+      font: inherit; 
+      
+      /* Capsule styles */
+      display: flex;
+      position: relative;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      overflow: clip;
+      isolation: isolate;
+      user-select: none;
+      touch-action: manipulation;
+      transition: background var(--fx-smooth),
+                  box-shadow var(--fx-smooth),
+                  color var(--fx-short),
+                  opacity var(--fx-short),
+                  scale var(--fx-short),
+                  transform var(--fx-smooth);
+
+      @supports (transition-behavior: allow-discrete) {
+    
+        transition-behavior: allow-discrete;
+      }
+
+      &:focus-visible{
+        outline: var(--one) solid var(--accent);
+        outline-offset: var(--three);
+      }
+
+      @media (prefers-reduced-motion: no-preference) {
+
+        &:not(:is([class="copy"], [class="live"])):active{ 
+          scale: 0.9; 
+        }
+      }
+
+      span{
+        display: inline-grid;
+        place-items: center;
+      }
+    }
+  }
+}

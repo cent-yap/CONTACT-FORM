@@ -1,0 +1,51 @@
+@layer animations {
+
+  @keyframes crossfade{
+    
+    0%{ 
+      opacity: 0; 
+    }
+
+    5%{ 
+      opacity: 1; 
+    }
+
+    20%{ 
+      opacity: 1; 
+    }
+
+    25%, 100%{ 
+      opacity: 0; 
+    }
+  }
+
+  @keyframes scrollL {
+
+    from{
+      translate: 0 0;
+    }
+
+    to{
+      translate: -100% 0;
+    }
+  }
+
+  @keyframes incorrect {
+
+    0%{ 
+      translate: 0 0;
+    }
+
+    25%{ 
+      translate: var(--xs) 0;
+    } 
+
+    75%{ 
+      translate: calc(-1 * var(--xs)) 0;
+    } 
+
+    100%{ 
+      translate: 0 0;
+    }
+  }
+}

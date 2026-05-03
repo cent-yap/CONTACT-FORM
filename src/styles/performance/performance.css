@@ -1,0 +1,41 @@
+@layer performance {
+ 
+  /* Content visibility on layout sections */
+  @scope (:is(aside, header, main, footer)) {
+
+    :scope{ 
+      contain: content; 
+    } 
+
+    @supports (content-visibility: auto) {
+
+      :scope{
+        content-visibility: auto;
+        contain-intrinsic-block-size: auto var(--stretch);
+      }
+    }
+  }
+
+  /* SVG transitions — pointer devices only */
+  @media (hover: hover) and (pointer: fine) {
+
+    :is(svg path, svg line, svg circle){
+      transition: fill var(--fx-fast),
+                  stroke var(--fx-short),
+                  opacity var(--fx-short),
+                  transform var(--fx-smooth);
+    }
+  }
+
+  /* High-DPI SVG rendering */
+  @media (resolution >= 2dppx) {
+
+    :is(svg line, svg circle, svg rect, svg polygon){
+      shape-rendering: crispEdges;
+    }
+    
+    svg path{
+      stroke-width: 1.5;
+    }
+  }
+}
