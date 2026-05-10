@@ -1,0 +1,318 @@
+﻿@layer main {
+
+  /* Main Section */
+  main {
+
+    /* First Section */
+    section:first-of-type {
+      background: var(--surface);
+      min-block-size: 100dvb;
+
+      .bound {
+
+        .rail {
+         
+          .panel {
+            display: flex;
+            place-content: center;
+            flex-flow: row wrap-reverse;
+            gap: calc(2 * var(--sp-2));
+            inline-size: 100%;
+
+            &:has(:is(input, textarea):invalid) {
+
+              .cluster:last-of-type {
+
+                .slot {
+
+                  &::after {
+                    mix-blend-mode: soft-light;
+                  }
+
+                  .slide {
+                    animation: crossfade calc(5 * var(--dur-7)) var(--ease-accent) calc(var(--i) * var(--dur-7)) infinite both;
+                    animation-composition: add;
+                  }
+                }
+              }
+            }
+
+            .cluster {
+              display: grid;
+              position: relative;
+              place-items: center;
+              min-inline-size: min(100%, var(--ct-lg));
+
+              &:first-of-type {
+                flex: 1.2;
+                block-size: max-content;
+
+                form {
+                  display: grid;
+                  position: relative;
+                  place-items: center;
+                  gap: var(--gap-lg);
+                  block-size: fit-content;
+                  inline-size: 100%;
+
+                  &:has(:is(input, textarea):invalid) {
+
+                    .entry:last-of-type {
+
+                      button[type="submit"] {
+                        cursor: not-allowed;
+                        pointer-events: none;
+                      }
+                    }
+                  }
+
+                  header {
+                    display: grid;
+                    position: relative;
+                    place-items: start;
+                    gap: var(--rd-sm);
+                    margin-block-end: var(--sp-2);
+                    inline-size: 100%;
+
+                    h1 {
+                      color: var(--secondary);
+                      font-size: var(--fs-xl);
+                    }
+
+                    p {
+                      color: var(--secondary-muted);
+                      font-size: var(--fs-bd);
+                    }
+                  }
+
+                  .entry {
+                    display: grid;
+                    position: relative;
+                    gap: var(--rd-sm);
+                    block-size: 100%;
+                    inline-size: 100%;
+
+                    &:not(:has(button[type="submit"])) {
+                      place-items: center start;
+                    }
+
+                    small:is(.error, .success) {
+                      display: none;
+                      position: absolute;
+                      place-self: start end;
+                      font-size: calc(var(--fs-cp) - var(--bw-1));
+                      opacity: 0;
+                      transition: display var(--motion-2),
+                                  opacity var(--motion-2);
+                      transition-behavior: allow-discrete;
+                      translate: 0 calc(-1 * var(--rd-sm));
+                      inline-size: fit-content;
+                    }
+
+                    label {
+                      display: inline-flex;
+                      position: absolute;
+                      color: var(--secondary-muted);
+                      font-size: calc(var(--fs-bd) - var(--bw-1));
+                      gap: var(--px-3);
+                      pointer-events: none;
+                      user-select: none;
+                      transition: background var(--motion-2),
+                                  color var(--motion-2),
+                                  padding-inline var(--motion-2),
+                                  translate var(--motion-2);
+
+                      &:is([for="full-name"], [for="subject"]) {
+                        transform: translateY(calc(-1 * (var(--rd-sm) + (2 * var(--px-2)))));
+                      }
+
+                      small.vital {
+                        display: none;
+                        color: var(--error);
+                        font-size: inherit;
+                      }
+                    }
+
+                    &:has(:is(input, textarea):where(:focus-visible, :not(:placeholder-shown))) {
+                      
+                      label {
+                        color: var(--secondary);
+                        background: var(--surface);
+                        translate: 0 calc(-1 * (var(--sp-2) + var(--rd-xs)));
+                        z-index: 3;
+
+                        small.vital {
+                          display: inline-grid;
+                          transition: display var(--dur-1), 
+                                      opacity var(--motion-1);
+                          transition-behavior: allow-discrete;
+
+                          @starting-style { 
+                            opacity: 0; 
+                          }
+                        }
+                      }
+
+                      small.clue { 
+                        color: var(--secondary); 
+                      }
+                    }
+
+                    small.clue {
+                      color: var(--secondary-muted);
+                      font-size: calc(var(--fs-cp) - var(--bw-1));
+                    }
+
+                    :is(input, textarea) {
+                      color: var(--secondary);
+                      font-size: var(--fs-cp);
+                      --showy: var(--secondary-subtle);
+                      --weight: var(--px-1);
+                      box-shadow: inset 0 calc(-1 * var(--weight)) 0 0 var(--showy);
+                      padding: calc(var(--rd-sm) + var(--px-3)) 0;
+                      transition: box-shadow var(--motion-2),
+                                  color var(--motion-2);
+
+                      &:focus-visible {
+                        --showy: var(--secondary-muted);
+                        --weight: calc((var(--px-1) / 2) + var(--px-1));
+                      }
+
+                      &[name="full-name"] {
+                        text-transform: capitalize;
+                      }
+                    
+                      &:where(:not(:placeholder-shown)) {
+                        --shadow: inset 0 calc((var(--px-1) / 2) + (-1 * var(--px-2))) 0 0;
+
+                        &:user-valid {
+                          box-shadow: var(--shadow) var(--success);
+
+                          ~ small.clue { 
+                            color: var(--success); 
+                          }
+
+                          ~ small.success {
+                            display: grid;
+                            color: var(--success); 
+                            opacity: 1;
+
+                            @starting-style { 
+                              opacity: 0; 
+                            }
+                          }
+                        }
+
+                        &:user-invalid:not(:focus-visible) {
+                          box-shadow: var(--shadow) var(--error);
+                          animation: incorrect var(--motion-1) calc(2 * var(--dur-3)) 3;
+
+                          ~ small.clue { 
+                            color: var(--error);
+                          }
+
+                          ~ small.error {
+                            display: grid;
+                            color: var(--error); 
+                            opacity: 1;
+
+                            @starting-style { 
+                              opacity: 0; 
+                            }
+                          }
+                        }
+                      }
+                    }
+
+                    textarea {
+                      resize: none;
+                      block-size: calc(10 * var(--gap-lg)); 
+                    }
+
+                    &:has(textarea) label {
+                      inset: calc(var(--rd-sm) + var(--px-3)) auto auto 0;
+                    }
+
+                    &:has(button[type="submit"]) {
+                      place-items: end start;
+                      margin-block-start: var(--rd-sm);
+                    }
+                  }
+                }
+              }
+
+              &:last-of-type {
+                flex: 2;
+                clip-path: var(--shape);
+                overflow: clip;
+                overflow-clip-margin: content-box;
+                min-block-size: var(--ct-xl);
+
+                .slot {
+                  position: relative;
+                  background: var(--secondary);
+                  mask: linear-gradient(to bottom in oklch, var(--secondary) 0% 85%, transparent 100%) no-repeat 100% 100%;
+                  isolation: isolate;
+                  block-size: 100%;
+                  inline-size: 100%;
+
+                  &::before, &::after {
+                    content: " ";
+                    position: absolute;
+                    inset: 0;
+                  }
+
+                  &::before {
+                    background: linear-gradient(to bottom in oklch, var(--primary-subtle), var(--primary-muted));
+                    mix-blend-mode: overlay;
+                    z-index: 2;
+                  }
+
+                  &::after {
+                    background: url("https://cdn.prod.website-files.com/5e88da4bcce5fb5debaab0e6/6007f4dbdc71065158e80081_A_Frame_1_Loop.gif") center / cover no-repeat;
+                    filter: contrast(1.1) saturate(1.1);
+                    z-index: 0;
+                  }
+
+                  .slide {
+                    position: absolute;
+                    inset: 0;
+                    background: center / cover no-repeat;
+                    filter: contrast(1.1) saturate(1.1);
+                    opacity: 0;
+                    z-index: 1;
+
+                    &:nth-child(1 of &) { 
+                      --i: 0;
+                      background-image: url("https://4kwallpapers.com/images/walls/thumbs_3t/4463.jpg"); 
+                    }
+
+                    &:nth-child(2 of &) { 
+                      --i: 1;
+                      background-image: url("https://4kwallpapers.com/images/walls/thumbs_3t/5822.jpg"); 
+                    }
+
+                    &:nth-child(3 of &) { 
+                      --i: 2;
+                      background-image: url("https://4kwallpapers.com/images/walls/thumbs_3t/8138.jpg");
+                    }
+
+                    &:nth-child(4 of &) { 
+                      --i: 3;
+                      background-image: url("https://4kwallpapers.com/images/walls/thumbs_3t/1098.jpg"); 
+                    }
+
+                    &:nth-child(5 of &) { 
+                      --i: 4;
+                      background-image: url("https://4kwallpapers.com/images/walls/thumbs_3t/4058.jpg"); 
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

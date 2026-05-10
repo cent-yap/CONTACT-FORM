@@ -1,0 +1,56 @@
+﻿@layer performance {
+
+  /* Layout sections — content visibility & entry transition */
+  @scope (:is(aside, header, main, footer)) {
+
+    :scope {
+      contain: content;
+      isolation: isolate;
+    }
+
+    @supports (content-visibility: auto) {
+
+      :scope {
+        content-visibility: auto;
+        contain-intrinsic-block-size: auto var(--ct-lg);
+      }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+
+      :scope {
+        transition: opacity var(--motion-1);
+      }
+
+      @starting-style {
+
+        :scope {
+          opacity: 0;
+        }
+      }
+    }
+  }
+
+  /* SVG transitions — pointer devices only, motion allowed */
+  @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+
+    :is(svg path, svg line, svg circle) {
+      transition: fill var(--motion-1),
+                  stroke var(--motion-2),
+                  opacity var(--motion-2),
+                  transform var(--motion-3);
+    }
+  }
+
+  /* High-DPI SVG rendering */
+  @media (resolution >= 2dppx) {
+
+    :is(svg line, svg circle, svg rect, svg polygon) {
+      shape-rendering: crispEdges;
+    }
+
+    svg path {
+      stroke-width: 1.5;
+    }
+  }
+}

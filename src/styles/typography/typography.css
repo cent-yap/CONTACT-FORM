@@ -1,0 +1,216 @@
+﻿@layer typography {
+  
+  @scope (:where(html, body)) {
+
+    /* Typography & letter spacing */
+    :is(h1, h2, h3, h4, legend, summary, figcaption, small, p, li) {
+      text-wrap: pretty;
+      overflow-wrap: break-word;
+      word-break: normal;
+
+      @supports (text-box-trim: both) {
+         
+        text-box-trim: both;
+        text-box-edge: cap alphabetic;
+      }
+    }
+
+    :is(h1, h2, h3, h4, legend, summary) {
+      font-family: "Gambarino", system-ui, sans-serif;
+      font-weight: 500;
+      hyphens: none;
+      letter-spacing: 0.01em;
+      word-spacing: -0.02em;
+      line-height: var(--lh-tight);
+      text-rendering: optimizeLegibility;
+      text-wrap-style: balance;
+
+      & :is(b, em, span, strong) {
+        font-weight: inherit;
+        letter-spacing: inherit;
+        word-spacing: inherit;
+      }
+    }
+
+    :is(a, abbr, u, ins, s, del, button, figcaption, small, p, li, label, input, select, textarea) {
+      font-family: "Cabinet Grotesk", system-ui, sans-serif;
+      line-height: var(--lh-base);
+    }
+
+    :is(a, abbr, u, ins, s, del) {
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    :is(a, b, abbr, button, em, span, strong) {
+      color: inherit;
+      letter-spacing: 0.005em;
+      word-spacing: 0.01em;
+    }
+
+    :is(a, abbr, button, span) {
+      font-weight: 400;
+    }
+
+    :is(b, em, span, strong) {
+      font-family: inherit;
+    }
+
+    :is(figcaption, small, p, li, label) {
+      font-weight: 300;
+      hyphens: auto;
+      letter-spacing: 0.005em;
+      word-spacing: 0.02em;
+      max-inline-size: clamp(45ch, 50svi, 60ch);
+    }
+
+    :is(ol, ul) {
+      margin: 0;
+      padding: 0;
+
+      li {
+        list-style: none;
+      }
+    }
+
+    :is(code, kbd, samp) {
+      font-family: ui-monospace, monospace;
+      font-size: var(--fs-sm);
+      font-variant-ligatures: none;
+      tab-size: 2;
+    }
+
+    :is(time, address) {
+      font-style: normal;
+    }
+
+    :lang(en) {
+      quotes: "\201C" "\201D" "\2018" "\2019";
+    }
+
+    :dir(rtl) {
+      letter-spacing: 0;
+      word-spacing: 0;
+    }
+
+    abbr[title] {
+      cursor: help;
+      animation: change var(--motion-6) infinite alternate;
+
+      &:hover {
+        animation-play-state: paused;
+      }
+    }
+
+    blockquote {
+      font-style: italic;
+
+      cite {
+        color: var(--primary-muted);
+        font-style: normal;
+        font-size: var(--fs-sm);
+      }
+    }
+
+    pre {
+      overflow-x: auto;
+      tab-size: 2;
+      white-space: pre;
+
+      code {
+        font-size: inherit;
+      }
+    }
+
+    mark {
+      background: var(--accent-muted);
+      color: var(--primary);
+      border-radius: var(--rd-xs);
+      padding-inline: var(--rd-xs);
+    }
+
+    /* Vertical rhythm */
+    p + p {
+      margin-block-start: var(--flow-base);
+    }
+
+    li + li {
+      margin-block-start: var(--flow-tight);
+    }
+
+    * + :is(h1, h2, h3, h4) {
+      margin-block-start: var(--flow-loose);
+    }
+
+    :is(h1, h2, h3, h4) + * {
+      margin-block-start: var(--flow-tight);
+    }
+
+    figure > figcaption {
+      margin-block-start: var(--flow-tight);
+    }
+
+    /* Reset & box-sizing for form elements */
+    :is(select, textarea, input:not([type="checkbox"], [type="radio"])) {
+      all: unset;
+      box-sizing: border-box;
+      display: block;
+      position: relative;
+      appearance: none;
+      color: inherit;
+      font: inherit;
+      min-inline-size: 0;
+      inline-size: 100%;
+
+      @supports (field-sizing: content) {
+
+        field-sizing: content;
+      }
+    }
+
+    :is(textarea, input:not([type="checkbox"], [type="radio"])) {
+      cursor: text;
+
+      &::placeholder {
+        color: var(--secondary-muted);
+      }
+
+      &:placeholder-shown {
+        overflow: clip;
+        text-overflow: ellipsis;
+      }
+
+      &::spelling-error, &::grammar-error {
+        text-decoration: underline var(--error) var(--bw-1);
+        text-decoration-skip-ink: all;
+        text-underline-offset: var(--bw-1);
+      }
+
+      &::spelling-error { 
+        text-decoration-style: solid; 
+      }
+
+      &::grammar-error { 
+        text-decoration-style: wavy; 
+      }
+    }
+
+    :is(input[type="checkbox"], input[type="radio"]) {
+      box-sizing: border-box;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    fieldset {
+      box-sizing: border-box;
+      border: none;
+      margin: 0;
+      padding: 0;
+      min-inline-size: 0;
+    }
+
+    select {
+      cursor: pointer;
+    }
+  }
+}
