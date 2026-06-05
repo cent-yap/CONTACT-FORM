@@ -1,0 +1,64 @@
+@scope (:is(button, [data-ui="btn"], [data-ui="link"]):not([data-raw])) {
+
+  /* Capsule styles & Interactions */
+  :scope {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--fs-bd);
+    white-space: nowrap;
+    isolation: isolate;
+    overflow: clip;
+    transition: background var(--motion-3),
+                box-shadow var(--motion-3),
+                color var(--motion-2),
+                padding var(--motion-3),
+                opacity var(--motion-2),
+                scale var(--motion-2),
+                transform var(--motion-3);
+
+    span {
+      display: inline-grid;
+      place-items: center;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+
+      &:not(:is([data-ui="copy"], [data-ui="link"], [data-ui="live"])):active { 
+        scale: 0.9; 
+      }
+    }
+  }
+
+  /* Submit variant */
+  :scope[type="submit"] {
+    background: var(--secondary);
+    border-radius: calc(2 * var(--rd-4));
+    box-shadow: var(--primary-subtle) 0 var(--px-1) var(--px-2) 0,
+                var(--primary-subtle) 0 var(--px-1) var(--px-3) var(--px-1);
+    color: var(--primary);
+    padding: calc(var(--rd-2) + var(--px-3)) var(--sp-1);
+    will-change: scale;
+    inline-size: 100%;
+
+    &:hover {
+      color: var(--secondary);
+    }
+
+    &::before {
+      content: " ";
+      position: absolute;
+      inset: 0;
+      background: var(--accent);
+      transition: scale var(--motion-2);
+      scale: 0 1;
+      transform-origin: left;
+      z-index: -1;
+    }
+
+    &:hover::before {
+      scale: 1 1;
+    }
+  }
+}

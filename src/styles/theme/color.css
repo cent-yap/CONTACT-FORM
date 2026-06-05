@@ -1,0 +1,63 @@
+/* Color properties */
+@property --primary-base {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #0b090a;
+}
+
+@property --secondary-base {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #f8f9fa;
+}
+
+@property --accent-base {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #99582a;
+}
+
+@property --surface-base {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #051923;
+}
+
+@property --success-base {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #2bc016;
+}
+
+@property --error-base {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #ff0000;
+}
+
+:root {
+  
+  /* Primary layers */
+  --primary: oklch(from var(--primary-base) calc(l * 0.3) calc(c * 1.5) calc(h + 3));
+  --primary-muted: oklch(from var(--primary) l c h / 0.75);
+  --primary-subtle: oklch(from var(--primary) l c h / 0.15);
+
+  /* Secondary layers */
+  --secondary: oklch(from var(--secondary-base) calc(l * 1.5) calc(c * 1.5) calc(h + 3));
+  --secondary-muted: oklch(from var(--secondary) l c h / 0.75);
+  --secondary-subtle: oklch(from var(--secondary) l c h / 0.15);
+  
+  /* Accent layers */
+  --accent: oklch(from var(--accent-base) l calc(c * 1.5) calc(h + 3));
+  --accent-muted: oklch(from var(--accent) l c h / 0.75);
+  --accent-subtle: oklch(from var(--accent) l c h / 0.15);
+
+  /* Surface layers */
+  --surface: oklch(from var(--surface-base) l calc(c * 1.5) calc(h + 3));
+  --surface-muted: oklch(from var(--surface) l c h / 0.75);
+  --surface-subtle: oklch(from var(--surface) l c h / 0.15);
+
+  /* Success & Error layers */
+  --success: oklch(from var(--success-base) calc(l * 1.2) calc(c * 1.5) calc(h + 3));
+  --error: oklch(from var(--error-base) calc(l * 1.2) calc(c * 1.5) calc(h + 3));
+}

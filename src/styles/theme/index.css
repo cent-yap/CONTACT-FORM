@@ -1,0 +1,13 @@
+/*
+ * Sub-layers are private to theme.
+ * Always import theme/index.css → never individual files directly.
+ * Importing files directly breaks sub-layer ordering silently.
+*/
+
+/* Theme sub-layer order (lowest → highest) */
+@layer timing, scale, color;
+
+/* Import theme layers */
+@import "../theme/timing.css" layer(timing);
+@import "../theme/scale.css" layer(scale);
+@import "../theme/color.css" layer(color);

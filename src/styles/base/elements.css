@@ -1,0 +1,102 @@
+﻿.sr-only {
+  position: absolute;
+  white-space: nowrap;
+  border: 0;
+  clip-path: inset(50%);
+  margin: calc(-1 * var(--px-1));
+  overflow: hidden;
+  block-size: var(--px-1);
+  inline-size: var(--px-1);
+}
+
+:any-link {
+  color: inherit;
+}
+
+:visited:not(:has(img, svg, picture)) {
+  color: oklch(from currentColor l c h / 0.65);
+}
+
+@supports selector(::target-text) {
+
+  ::target-text {
+    background: var(--accent);
+    color: contrast-color(var(--accent));
+  }
+}
+
+::selection {
+  background: var(--primary);
+  color: contrast-color(var(--primary));
+}
+
+:is(img, svg:not(:has(text))) {
+  user-select: none;
+  print-color-adjust: exact;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+}
+
+svg {
+  display: inline-block;
+  overflow: visible;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  shape-rendering: geometricPrecision;
+  text-rendering: optimizeLegibility;
+  vertical-align: middle;
+
+  /* Targets inner geometries for hardware-accelerated transforms and strokes */
+  & :is(path, rect, circle, line, polygon, polyline) {
+    transform-box: fill-box;
+    transform-origin: center;
+    vector-effect: non-scaling-stroke;
+  }
+
+  &:not([fill]) {
+    fill: none;
+  }
+}
+
+/* Interactive elements */
+:is(a, button, select, label[for], input:is([type="checkbox"], [type="radio"]), 
+    [role="button"], [data-ui="btn"], [data-ui="link"]) {
+  user-select: none;
+  cursor: pointer; 
+
+  &:not(label):focus-visible {
+    outline: var(--px-1) solid var(--accent);
+    outline-offset: var(--px-3);
+  }
+}
+
+a {
+  text-decoration: none;
+}
+
+html {
+  overflow-inline: clip;
+  scroll-padding-block-start: var(--sp-1);
+  scrollbar-color: var(--surface) var(--secondary);
+  scrollbar-width: thin;
+
+  accent-color: var(--accent);
+  caret-color: currentColor;
+  /* Intentional: dark mode not supported */
+  color-scheme: only light;
+
+  interpolate-size: allow-keywords;
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+
+  min-block-size: 100dvb;
+}
+
+body {
+  background: var(--surface);
+  color: contrast-color(var(--surface));
+  overscroll-behavior: none;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}

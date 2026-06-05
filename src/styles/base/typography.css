@@ -1,0 +1,165 @@
+@scope (:where(html, body)) {
+
+  /* Base typography & Inheritance */
+  :scope {
+    font-family: "Cabinet Grotesk", system-ui, sans-serif;
+    font-synthesis: none;
+    font-variant: common-ligatures contextual lining-nums proportional-nums;
+    font-optical-sizing: auto;
+    font-kerning: normal;
+    -webkit-font-smoothing: antialiased;
+  
+    hyphenate-limit-chars: 6 3 3;
+    hanging-punctuation: first last;
+    letter-spacing: 0.005em;
+    word-spacing: 0.01em;
+    line-height: var(--lh-base);
+    overflow-wrap: break-word;
+    text-underline-offset: var(--bw-1);
+    text-decoration-thickness: from-font;
+
+    @supports (text-box: trim-both cap alphabetic) {
+
+      text-box: trim-both cap alphabetic;
+    }
+  }
+
+  /* Headings & Titles */
+  :is(h1, h2, h3, h4, h5, h6, legend, summary) {
+    font-family: "Gambarino", system-ui, sans-serif;
+    font-weight: 500;
+    hyphens: none;
+    letter-spacing: 0.01em;
+    word-spacing: -0.02em;
+    line-height: var(--lh-tight);
+    text-rendering: optimizeLegibility;
+    text-wrap-style: balance;
+
+    & :is(b, em, span, strong) {
+      font-weight: inherit;
+      letter-spacing: inherit;
+      word-spacing: inherit;
+    }
+  }
+
+  /* Text decorations */
+  :is(u, ins) {
+    text-decoration: underline;
+  }
+
+  :is(s, del) {
+    text-decoration: line-through;
+  }
+
+  /* Paragraphs & Reading blocks */
+  :is(figcaption, small, p, address, label, li) {
+    font-weight: 300;
+    word-spacing: 0.02em;
+    overflow-wrap: anywhere;
+    text-wrap-style: pretty;
+
+    &:is(:not(li), [role="list"] > *) {
+      hyphens: auto;
+      max-inline-size: clamp(52ch, calc(60ch + 2svi), 72ch);
+    }
+  }
+
+  /* Subscripts & Superscripts */
+  :is(sub, sup) {
+    position: relative;
+    font-size: var(--fs-cp);
+    line-height: 0;
+    vertical-align: baseline;
+  }
+
+  sup {
+    inset-block-start: -0.5em;
+  }
+
+  sub {
+    inset-block-end: -0.25em;
+  }
+
+  /* Code & Preformatted text */
+  :is(code, kbd, pre, samp) {
+    font-family: ui-monospace, monospace;
+    font-size: var(--fs-bd);
+    font-variant-ligatures: none;
+  }
+
+  pre {
+    overflow-inline: auto;
+    tab-size: 2;
+    white-space: pre;
+
+    code {
+      font-size: inherit;
+    }
+  }
+
+  /* Miscellaneous semantics */
+  :is(time, address) {
+    font-style: normal;
+  }
+
+  :is(table, time, [data-type="currency"]) {
+    font-variant-numeric: tabular-nums;
+  }
+
+  :lang(en) {
+    quotes: "\201C" "\201D" "\2018" "\2019";
+  }
+
+  :dir(rtl) {
+    letter-spacing: 0;
+    word-spacing: 0;
+  }
+
+  /* Accessible abbreviations */
+  abbr[title] {
+    cursor: help;
+    text-decoration: underline solid currentColor var(--px-1);
+    text-underline-offset: var(--bw-1);
+    transition: color var(--motion-1);
+    
+    &:hover {
+      color: var(--accent);
+    }
+  }
+
+  blockquote {
+    font-style: italic;
+
+    cite {
+      color: var(--primary-muted);
+      font-style: normal;
+      font-size: var(--fs-cp);
+    }
+  }
+
+  mark {
+    background: var(--secondary);
+    color: contrast-color(var(--secondary));
+  }
+
+  /* Vertical rhythm (Lobotomized Owl Variant) */
+  * + :is(p, pre, table, details, dl, ol, ul, address, form, video),
+  :is(pre, table, details, dl, ol, ul, address, form, video) + *, 
+  dd + dt {
+    margin-block-start: var(--flow-base);
+  }
+
+  * + :is(h1, h2, h3, h4, h5, h6, figure, blockquote, hr),
+  :is(figure, blockquote, hr) + * {
+    margin-block-start: var(--flow-loose);
+  }
+
+  :is(h1, h2, h3, h4, h5, h6) + *, figure > figcaption,
+  address > * + *, :is(dl, ol, ul) :is(dl, ol, ul), li + li {
+    margin-block-start: var(--flow-tight);
+  }
+
+  dt + dd {
+    margin-block-start: 0;
+  }
+}

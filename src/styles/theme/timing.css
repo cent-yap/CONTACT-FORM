@@ -1,0 +1,48 @@
+:root {
+
+  /* Duration scale (short → long) */
+  --dur-1: 250ms;
+  --dur-2: 350ms;
+  --dur-3: 500ms;
+  --dur-4: 800ms;
+  --dur-5: 1200ms;
+  --dur-6: 2000ms;
+  --dur-7: 4000ms;
+
+  @media (prefers-reduced-motion: reduce) {
+    
+    :root {
+      --dur: 0ms;
+      --dur-1: var(--dur);
+      --dur-2: var(--dur);
+      --dur-3: var(--dur);
+      --dur-4: var(--dur);
+      --dur-5: var(--dur);
+      --dur-6: var(--dur);
+      --dur-7: var(--dur);
+    }
+  }
+
+  /* Easing → standard */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.32, 0, 0.67, 0);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-linear: linear(0, 1);
+
+  /* Easing → custom curves */
+  --ease-emphasized: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-expressive: cubic-bezier(0.34, 0.69, 0.1, 1);
+  --ease-accent: cubic-bezier(0.22, 0.61, 0.08, 1);
+
+  /* Motion tokens (duration + easing) */
+  --motion-1: var(--dur-1) var(--ease-out);
+  --motion-2: var(--dur-2) var(--ease-out);
+  --motion-3: var(--dur-3) var(--ease-in-out);
+  --motion-4: var(--dur-4) var(--ease-in-out);
+  --motion-5: var(--dur-5) var(--ease-in-out);
+  --motion-6: var(--dur-7) var(--ease-linear);
+
+  --motion-emphasized: var(--dur-5) var(--ease-emphasized);
+  --motion-expressive: var(--dur-6) var(--ease-expressive);
+  --motion-accent: var(--dur-7) var(--ease-accent);
+}

@@ -1,0 +1,34 @@
+/* Box model & Spacing reset */
+:where(*, *::before, *::after) {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Media defaults */
+:where(img, video, canvas, audio, iframe, embed, object) {
+  display: block;
+  block-size: auto;
+  max-inline-size: 100%;
+}
+
+/* List reset */
+:where(ol, ul)[role="list"] {
+  list-style: none;
+}
+
+/* Form element & Button resets */
+:where(select, textarea, button, [data-ui="btn"], [data-ui="link"], 
+       input:not(:is([type="checkbox"], [type="radio"]))) {
+  all: unset;
+  /* Intentional: restores after all: unset */
+  box-sizing: border-box;
+}
+
+/* Smooth scrolling */
+@media (prefers-reduced-motion: no-preference) {
+  
+  :where(html) { 
+    scroll-behavior: smooth; 
+  }
+}

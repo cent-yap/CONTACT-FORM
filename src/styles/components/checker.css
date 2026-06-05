@@ -1,0 +1,163 @@
+form {
+  display: grid;
+  position: relative;
+  place-items: center;
+  gap: var(--rd-4);
+  inline-size: 100%;
+
+  /* Validation: Disable submit if invalid */
+  &:invalid [type="submit"] {
+    cursor: not-allowed;
+    opacity: .75;
+    pointer-events: none;
+  }
+}
+
+header {
+  display: grid;
+  place-items: start;
+  margin-block-end: var(--sp-2);
+  inline-size: 100%;
+
+  h1 {
+    color: var(--secondary);
+    font-size: var(--fs-xl);
+  }
+
+  p {
+    color: var(--secondary-muted);
+    font-size: var(--fs-bd);
+  }
+}
+
+small:is(.error, .success, .vital) {
+  display: none;
+  font-size: var(--fs-cp);
+  transition: display var(--dur-1) allow-discrete, 
+              opacity var(--motion-1);
+
+  @starting-style { 
+    opacity: 0;
+  }
+}
+
+label:is(:has(small.vital), [for="subject"]) {
+  display: inline-flex;
+  position: absolute;
+  inset-block-start: calc(var(--rd-2) + var(--px-3));
+  color: var(--secondary-muted);
+  font-size: var(--fs-bd);
+  gap: var(--px-3);
+  pointer-events: none;
+  user-select: none;
+  transition: background var(--motion-2),
+              color var(--motion-2),
+              font-size var(--motion-2),
+              translate var(--motion-2);
+  will-change: translate;
+
+  small.vital {
+    color: var(--error);
+  }
+}
+
+.entry {
+  display: grid;
+  position: relative;
+  place-items: center start;
+  gap: var(--rd-2);
+  inline-size: 100%;
+
+  &:has([type="submit"]) {
+    place-items: end center;
+    margin-block: var(--rd-2);
+  }
+
+  small:is(.error, .success) {
+    position: absolute;
+    place-self: start end;
+    translate: 0 calc(-1 * var(--rd-2));
+  }
+
+  small.clue {
+    color: var(--secondary-muted);
+    font-size: var(--fs-cp);
+  }
+}
+
+.entry:has(:is(input, textarea):where(:focus-visible, :not(:placeholder-shown))) {
+
+  label {
+    background: var(--surface);
+    color: var(--secondary);
+    font-size: var(--fs-cp);
+    translate: 0 calc(-1 * (var(--rd-4) + var(--px-3)));
+    z-index: 3;
+
+    small.vital {
+      display: inline-grid;
+    }
+  }
+
+  small.clue {
+    color: var(--secondary);
+  }
+}
+
+:is(input, textarea) {
+  color: var(--secondary);
+  font-size: var(--fs-bd);
+  --showy: var(--secondary-subtle);
+  --weight: var(--px-1);
+  box-shadow: inset 0 calc(-1 * var(--weight)) 0 0 var(--showy);
+  padding: calc(var(--rd-2) + var(--px-3)) 0;
+  transition: box-shadow var(--motion-2),
+              color var(--motion-2);
+
+  &:focus-visible {
+    --showy: var(--secondary-muted);
+    --weight: calc((var(--px-1) / 2) + var(--px-1));
+  }
+
+  &[name="full-name"] {
+    text-transform: capitalize;
+  }
+}
+
+:is(input, textarea):where(:not(:placeholder-shown)) {
+  --shadow: inset 0 calc((var(--px-1) / 2) + (-1 * var(--px-2))) 0 0;
+
+  &:user-valid {
+    box-shadow: var(--shadow) var(--success);
+
+    ~ small.clue {
+      color: var(--success);
+    }
+
+    ~ small.success {
+      display: inline-grid;
+      color: var(--success);
+      opacity: 1;
+    }
+  }
+
+  &:user-invalid:not(:focus-visible) {
+    box-shadow: var(--shadow) var(--error);
+    animation: shake var(--motion-1) calc(2 * var(--dur-3)) 3;
+
+    ~ small.clue {
+      color: var(--error);
+    }
+
+    ~ small.error {
+      display: inline-grid;
+      color: var(--error);
+      opacity: 1;
+    }
+  }
+}
+
+textarea {
+  resize: none;
+  block-size: calc(10 * var(--rd-4)); 
+}

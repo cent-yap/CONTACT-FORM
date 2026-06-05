@@ -1,0 +1,12 @@
+/*
+ * Sub-layers are private to motion.
+ * Always import motion/index.css → never individual files directly.
+ * Importing files directly breaks sub-layer ordering silently.
+*/
+
+/* Motion sub-layer order (lowest → highest) */
+@layer animation, performance;
+
+/* Import motion layers */
+@import "../motion/animation.css" layer(animation);
+@import "../motion/performance.css" layer(performance);

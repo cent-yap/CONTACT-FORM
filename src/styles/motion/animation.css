@@ -1,0 +1,52 @@
+@keyframes crossFade {
+  
+  0%, 25%, 100% { 
+    opacity: 0; 
+  }
+
+  5%, 20% { 
+    opacity: 1; 
+  }
+}
+
+@keyframes shake {
+
+  0%, 100% { 
+    translate: 0 0;
+  }
+
+  25% { 
+    translate: var(--rd-1) 0;
+  } 
+
+  75% { 
+    translate: calc(-1 * var(--rd-1)) 0;
+  } 
+}
+
+/* View transition animations */
+@keyframes slideOut { 
+
+  from {
+    opacity: 1;
+    transform: scale(1) translateX(0);
+  } 
+
+  to { 
+    opacity: 0;
+    transform: scale(.5) translateX(-100dvi);
+  } 
+}
+
+@keyframes slideIn { 
+
+  from { 
+    opacity: 0;
+    transform: scale(.5) translateX(100dvi);
+  } 
+
+  to { 
+    opacity: 1;
+    transform: scale(1) translateX(0);
+  }
+}

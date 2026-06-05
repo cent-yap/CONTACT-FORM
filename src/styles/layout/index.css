@@ -1,0 +1,11 @@
+/*
+ * Sub-layers are private to layout.
+ * Always import layout/index.css → never individual files directly.
+ * Importing files directly breaks sub-layer ordering silently.
+*/
+
+/* Layout sub-layer order (lowest → highest) */
+@layer regions;
+
+/* Import layout layers */
+@import "../layout/regions.css" layer(regions);

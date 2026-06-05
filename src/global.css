@@ -1,0 +1,19 @@
+/*
+ * global.css — Project-wide cascade layer order.
+ * Later layers win. Do NOT add page-specific styles here.
+ 
+ * theme → design tokens (colors, spacing, typography)
+ * base → browser resets and element defaults (body, headings, links)
+ * layout → structural patterns (grid, container)
+ * components → reusable UI (header, footer, loader...)
+ * pages → page-specific styles (home, about, contact...)
+ * motion → animations and transitions
+*/
+
+@layer theme, base, layout, components, pages, motion;
+
+@import "./styles/theme/index.css" layer(theme);
+@import "./styles/base/index.css" layer(base);
+@import "./styles/layout/index.css" layer(layout);
+@import "./styles/components/index.css" layer(components);
+@import "./styles/motion/index.css" layer(motion);

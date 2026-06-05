@@ -1,0 +1,82 @@
+main {
+  will-change: opacity, transform;
+  view-transition-name: page-content;
+}
+
+/* First Section */
+section:first-of-type {
+  min-block-size: 100dvb;
+}
+
+.panel {
+  display: flex;
+  justify-content: center;
+  gap: var(--sp-3);
+  inline-size: 100%;
+
+  &:has(:invalid) .cluster:last-of-type {
+
+    .slot::after {
+      mix-blend-mode: soft-light;
+    }
+
+    .slide {
+      animation: crossFade calc(5 * var(--dur-7)) var(--ease-accent)
+                           calc(var(--i) * var(--dur-7)) infinite both;
+      animation-composition: add;
+    }
+  }
+}
+
+.cluster {
+  display: grid;
+  min-inline-size: min(100%, var(--ct-lg));
+
+  &:first-of-type {
+    flex: 1.2;
+    block-size: max-content;
+  }
+
+  &:last-of-type {
+    flex: 2;
+    clip-path: var(--shape);
+    overflow: clip;
+    overflow-clip-margin: content-box;
+    min-block-size: var(--ct-xl);
+  }
+}
+
+.slot {
+  position: relative;
+  background: var(--secondary);
+  mask: linear-gradient(to bottom in oklch, var(--secondary) 0% 85%, transparent 100%) no-repeat 100% 100%;
+  isolation: isolate;
+  block-size: 100%;
+  inline-size: 100%;
+
+  &::before, &::after {
+    content: " ";
+    position: absolute;
+    inset: 0;
+  }
+
+  &::before {
+    background: linear-gradient(to bottom in oklch, var(--primary-subtle), var(--primary-muted));
+    mix-blend-mode: overlay;
+    z-index: 2;
+  }
+
+  &::after {
+    filter: contrast(1.1) saturate(1.1);
+    z-index: 0;
+  }
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  background: center / cover no-repeat;
+  filter: contrast(1.1) saturate(1.1);
+  opacity: 0;
+  z-index: 1;
+}

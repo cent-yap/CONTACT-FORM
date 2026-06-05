@@ -1,0 +1,76 @@
+@scope (:is(header, main, footer)) {
+
+  :scope {
+    isolation: isolate;
+  }
+
+  @media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+
+    :scope:not(.animating) {
+      opacity: 1;
+      scale: 1; 
+      transition: opacity var(--motion-2),
+                  scale var(--motion-1);
+      will-change: opacity, transform;
+    }
+
+    :scope:is(header, main) { 
+      transform-origin: top; 
+    }
+
+    :scope:is(footer) { 
+      transform-origin: bottom; 
+    }
+
+    @starting-style {
+      
+      :scope {
+        opacity: 0;
+        scale: .95;
+      }
+    }
+  }
+}
+
+/* Skip-ahead rendering for off-screen regions */
+@scope (:is(aside, footer)) {
+
+  :scope {
+    content-visibility: auto;
+    contain-intrinsic-size: auto var(--ct-lg);
+  }
+}
+
+/* SVG transitions → fine pointer only, scoped to interactive ancestors */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+
+  :is(a, button) :is(svg path, svg line, svg circle) {
+    transition: fill var(--motion-1),
+                stroke var(--motion-2),
+                opacity var(--motion-2),
+                translate var(--motion-3),
+                rotate var(--motion-3),
+                scale var(--motion-3);
+  }
+}
+
+/* Cross-document view transition animations */
+@media (prefers-reduced-motion: no-preference) {
+
+  @view-transition {
+    navigation: auto;
+  }
+
+  /* Page-content */
+  ::view-transition-group(page-content) {
+    animation: var(--motion-5) both;
+  }
+
+  ::view-transition-old(page-content) { 
+    animation-name: slideOut; 
+  }
+  
+  ::view-transition-new(page-content) { 
+    animation-name: slideIn; 
+  }
+}

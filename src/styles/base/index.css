@@ -1,0 +1,14 @@
+/*
+ * Sub-layers are private to base.
+ * Always import base/index.css → never individual files directly.
+ * Importing files directly breaks sub-layer ordering silently.
+*/
+
+/* Base sub-layer order (lowest → highest priority) */
+@layer reset, typography, elements, forms;
+
+/* Import base layers */
+@import "../base/reset.css" layer(reset);
+@import "../base/typography.css" layer(typography);
+@import "../base/elements.css" layer(elements);
+@import "../base/forms.css" layer(forms);

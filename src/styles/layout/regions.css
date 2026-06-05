@@ -1,0 +1,26 @@
+/* Shared grid base */
+:is(header, main, footer, section, .bound) {
+  display: grid;
+  position: relative;
+  place-items: center;
+  inline-size: 100%;
+}
+
+.bound { 
+  max-inline-size: var(--w-mx); 
+}
+
+/* Main */
+@scope (main) to (.rail) {
+
+  section {
+    padding-block: var(--sz-6); 
+  }
+}
+
+/* Rail global rules */
+.rail {
+  display: grid;
+  gap: var(--sp-3);
+  inline-size: calc(100% - var(--sz-6));
+}
